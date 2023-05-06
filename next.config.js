@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  experimental: {
+    serverComponentsExternalPackages: ['@tremor/react'],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
