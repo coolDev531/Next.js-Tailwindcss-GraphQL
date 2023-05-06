@@ -14,7 +14,7 @@ import { GlobeIcon } from '@heroicons/react/solid';
 
 // types
 import { ICountry, ICity } from 'country-state-city';
-import { CityOption, CountryOption } from '@/types/city-picker.types';
+import { CityOption, CountryOption } from '@/types/city-picker';
 
 // react select needs the value key, so we need to map the original countries and add value
 const countryOptions = Country.getAllCountries().map((country: ICountry) => ({
