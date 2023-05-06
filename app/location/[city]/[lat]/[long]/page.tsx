@@ -8,8 +8,9 @@ import celsiusToFahrenheit from '@/lib/convertCelciusToFarenheit';
 import kmhToMph from '@/lib/kmhToMph';
 import InformationPanel from '@/components/InformationPanel';
 import TemperatureChart from '@/components/TemperatureChart';
-import Compass from '@/components/Compass';
 import WindSpeedCard from '@/components/WindSpeedCard';
+import RainChart from '@/components/RainChart';
+import HumidityChart from '@/components/HumidityChart';
 
 type Props = {
   params: {
@@ -98,12 +99,6 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
                 color="cyan"
               />
 
-              {/* <StatCard
-                title="Wind Direction"
-                metric={`${results.current_weather.winddirection.toFixed(1)}°`}
-                color="violet"
-              /> */}
-              {/* <Compass degrees={results.current_weather.winddirection} /> */}
               <WindSpeedCard
                 title="Wind Direction"
                 metric={`${results.current_weather.winddirection.toFixed(1)}°`}
@@ -118,8 +113,8 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
 
         <div className="space-y-3">
           <TemperatureChart results={results} />
-          {/* <RainChart results={results} /> */}
-          {/* <HumidityChart results={results} /> */}
+          <RainChart results={results} />
+          <HumidityChart results={results} />
         </div>
       </div>
     </div>
