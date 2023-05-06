@@ -45,8 +45,12 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
           </div>
 
           <div className="m-2 mb-10">
-            <CalloutCard message={'This is where GPT4 Summary Will Go'} />
+            <CalloutCard
+            
+              message={'This is where GPT4 Summary Will Go'} />
           </div>
+
+          <d
         </div>
       </div>
     </div>
