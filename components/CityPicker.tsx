@@ -29,7 +29,7 @@ function CityPicker() {
   const handleCityChange = (option: CityOption) => {
     setSelectedCity(option);
     router.push(
-      `/location/${selectedCity?.value.latitude}/${selectedCity?.value.longitude}`
+      `/location/${option?.value.latitude}/${option?.value.longitude}`
     );
   };
 
