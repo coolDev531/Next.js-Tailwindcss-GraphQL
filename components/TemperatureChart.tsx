@@ -30,7 +30,7 @@ function TemperatureChart({ results }: Props) {
 
   return (
     <Card>
-      <Title>Temperature & UV Index</Title>
+      <Title className="text-white">Temperature & UV Index</Title>
       <AreaChart
         className="mt-6"
         data={data}

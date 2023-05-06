@@ -18,7 +18,7 @@ function WindSpeedCard({ title, metric, color, degrees }: Props) {
       style={{
         minHeight: '200px',
       }}>
-      <Text>{title}</Text>
+      <Text className="text-white">{title}</Text>
       <Compass degrees={degrees} metric={metric} title={title} />
     </Card>
   );

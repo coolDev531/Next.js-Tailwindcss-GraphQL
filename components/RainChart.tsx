@@ -26,7 +26,7 @@ function RainChart({ results }: Props) {
 
   return (
     <Card>
-      <Title>Chances of Rain</Title>
+      <Title className="text-white">Chances of Rain</Title>
       <AreaChart
         className="mt-6"
         data={data}

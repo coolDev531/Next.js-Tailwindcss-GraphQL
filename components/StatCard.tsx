@@ -10,9 +10,10 @@ type Props = {
 
 function StatCard({ title, metric, color }: Props) {
   return (
-    <Card decoration="top" decorationColor={color}>
-      <Text>{title}</Text>
-      <Metric>{metric}</Metric>
+    <Card 
+    decoration="top" decorationColor={color}>
+      <Text className="text-white">{title}</Text>
+      <Metric className="text-white">{metric}</Metric>
     </Card>
   );
 }

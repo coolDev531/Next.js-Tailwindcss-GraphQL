@@ -17,7 +17,7 @@ function Compass({ degrees, metric }: Props) {
         padding: '10px',
       }}>
       <div
-        className="select-none text-blue-500 font-bold
+        className="select-none text-pink-500 font-bold
        absolute top-[10%] left-[50%]"
         style={{
           transform: 'translate(-50%, -50%)',
@@ -25,7 +25,7 @@ function Compass({ degrees, metric }: Props) {
         N
       </div>
       <div
-        className="select-none text-blue-500 font-bold
+        className="select-none text-pink-500 font-bold
        absolute top-[50%] right-0"
         style={{
           transform: 'translate(-50%, -50%)',
@@ -33,7 +33,7 @@ function Compass({ degrees, metric }: Props) {
         E
       </div>
       <div
-        className="select-none text-blue-500 font-bold
+        className="select-none text-pink-500 font-bold
   absolute bottom-0 left-[50%]"
         style={{
           transform: 'translate(-50%, -50%)',
@@ -41,7 +41,7 @@ function Compass({ degrees, metric }: Props) {
         S
       </div>
       <div
-        className="select-none text-blue-500 font-bold
+        className="select-none text-pink-500 font-bold
  absolute top-[50%] left-0"
         style={{
           transform: 'translate(-50%, -50%)',
@@ -49,7 +49,7 @@ function Compass({ degrees, metric }: Props) {
         W
       </div>
       <Metric
-        className="text-black absolute bottom-0 right-0"
+        className="text-white absolute bottom-0 right-0"
         style={{
           fontSize: '14px',
         }}>

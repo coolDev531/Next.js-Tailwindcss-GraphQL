@@ -26,7 +26,7 @@ function HumidityChart({ results }: Props) {
 
   return (
     <Card>
-      <Title>Humidity Levels</Title>
+      <Title className="text-white">Humidity Levels</Title>
       <AreaChart
         className="mt-6"
         data={data}

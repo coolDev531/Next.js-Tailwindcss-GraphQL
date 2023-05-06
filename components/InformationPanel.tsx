@@ -14,10 +14,10 @@ type Props = {
 
 function InformationPanel({ city, lat, long, results }: Props) {
   return (
-    <div className="bg-gradient-to-br from-[#394F68] to-[#183B7E] text-white p-10">
+    <div className="bg-gradient-to-br from-[#f961e4] to-[#4063F2] text-white p-10">
       <div className="pb-5">
         <h1 className="text-6xl font-bold">{decodeURI(city)}</h1>
-        <p className="text-xs text-gray-400">
+        <p className="text-xs text-white-400">
           Long/Lat: {long}, {lat}
         </p>
       </div>
@@ -80,8 +80,8 @@ function InformationPanel({ city, lat, long, results }: Props) {
       </div>
 
       <div className="space-y-2 py-5">
-        <div className="flex items-center space-x-2 px-4 py-3 border border-[#6F90CD] rounded-md bg-[#405885]">
-          <SunIcon className="h-10 w-10 text-gray-400" />
+        <div className="flex items-center space-x-2 px-4 py-3 border border-[#fff] rounded-md bg-[#424242]">
+          <SunIcon className="h-10 w-10 text-white-400" />
 
           <div className="flex-1 flex justify-between items-center">
             <p className="font-extralight">Sunrise</p>
@@ -95,8 +95,8 @@ function InformationPanel({ city, lat, long, results }: Props) {
           </div>
         </div>
 
-        <div className="flex items-center space-x-2 px-4 py-3 border border-[#6F90CD] rounded-md bg-[#405885]">
-          <MoonIcon className="h-10 w-10 text-gray-400" />
+        <div className="flex items-center space-x-2 px-4 py-3 border border-[#fff] rounded-md bg-[#424242]">
+          <MoonIcon className="h-10 w-10 text-white-400" />
 
           <div className="flex-1 flex justify-between items-center">
             <p className="font-extralight">Sunset</p>
