@@ -17,9 +17,9 @@ function RainChart({ results }: Props) {
     )
     .slice(0, 24);
 
-  const data = hourly.map((hour, i) => ({
+  const data = hourly.map((hour, idx) => ({
     time: Number(hour),
-    'Rain (%)': results.hourly.precipitation_probability[i],
+    'Rain (%)': results.hourly.precipitation_probability[idx],
   }));
 
   const dataFormatter = (number: number) => `${number} %`;

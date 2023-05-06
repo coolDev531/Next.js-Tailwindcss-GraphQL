@@ -17,9 +17,9 @@ function HumidityChart({ results }: Props) {
     )
     .slice(0, 24);
 
-  const data = hourly.map((hour, i) => ({
+  const data = hourly.map((hour, idx) => ({
     time: Number(hour),
-    'Humidity (%)': results.hourly.relativehumidity_2m[i],
+    'Humidity (%)': results.hourly.relativehumidity_2m[idx],
   }));
 
   const dataFormatter = (number: number) => `${number} %`;
