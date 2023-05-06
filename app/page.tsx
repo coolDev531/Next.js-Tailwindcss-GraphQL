@@ -48,7 +48,7 @@ export default function Home() {
         <Button
           className="w-full bg-gradient-to-br from-[#394F68] to-[#183B7E]"
           onClick={onMyLocationClick}>
-          Get My Current Location's Weather
+          {`Get My Current Location's Weather`}
         </Button>
       </Card>
     </div>

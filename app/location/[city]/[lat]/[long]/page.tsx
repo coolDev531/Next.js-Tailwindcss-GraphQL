@@ -1,12 +1,9 @@
-import React from 'react';
 import { getClient } from '@/apollo-client';
 
 // lib
 import fetchWeatherQuery from '@/graphql/queries/fetchWeatherQuery';
 import celsiusToFahrenheit from '@/lib/convertCelciusToFarenheit';
 import kmhToMph from '@/lib/kmhToMph';
-import cleanWeatherData from '@/lib/cleanWeatherData';
-import getBasePath from '@/lib/getBasePath';
 import { Root } from '@/types/weather';
 
 // components
@@ -17,6 +14,7 @@ import TemperatureChart from '@/components/TemperatureChart';
 import WindSpeedCard from '@/components/WindSpeedCard';
 import RainChart from '@/components/RainChart';
 import HumidityChart from '@/components/HumidityChart';
+import WeatherSummary from '@/components/WeatherSummary';
 
 export const revalidate = 1440; // comes with next.js, every day seconds it will retrigger a rebuild of the cache (provided that the page is visited)
 
@@ -45,20 +43,6 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
 
   const results: Root = data.myQuery;
 
-  const dataToSendGPT = cleanWeatherData(results, city);
-
-  const res = await fetch(`${getBasePath()}/api/getWeatherSummary`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      weatherData: dataToSendGPT,
-    }),
-  });
-
-  const GPTdata = await res.json();
-
   const farenheitMax = celsiusToFahrenheit(
     results.daily.temperature_2m_max[0]
   ).toFixed(1);
@@ -84,7 +68,7 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
           </div>
 
           <div className="m-2 mb-10">
-            <CalloutCard message={GPTdata.content} />
+            <WeatherSummary city={city} results={results} />
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 m-2">
