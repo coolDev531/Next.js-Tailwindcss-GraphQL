@@ -47,7 +47,7 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
   const windspeedMPH = kmhToMph(results.current_weather.windspeed).toFixed(1);
 
   return (
-    <div className="flex flex-col min-h-screen md:flex-row">
+    <div className="flex flex-col min-h-screen lg:flex-row">
       <InformationPanel city={city} long={long} lat={lat} results={results} />
 
       <div className="flex-1 p-5 lg:p-10">
