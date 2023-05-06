@@ -6,6 +6,10 @@ import CalloutCard from '@/components/CalloutCard';
 import StatCard from '@/components/StatCard';
 import celsiusToFahrenheit from '@/lib/convertCelciusToFarenheit';
 import kmhToMph from '@/lib/kmhToMph';
+import InformationPanel from '@/components/InformationPanel';
+import TemperatureChart from '@/components/TemperatureChart';
+import Compass from '@/components/Compass';
+import WindSpeedCard from '@/components/WindSpeedCard';
 
 type Props = {
   params: {
@@ -43,60 +47,68 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
 
   return (
     <div className="flex flex-col min-h-screen md:flex-row">
-      {/* <InformationPanel/> */}
+      <InformationPanel city={city} long={long} lat={lat} results={results} />
 
       <div className="flex-1 p-5 lg:p-10">
         <div className="p-5">
           <div className="pb-5">
             <h2 className="text-xl font-bold">Todays Overview</h2>
             <p className="text-sm text-gray-400">
-              Last Updated At:{' '}
+              Last Updated at:{' '}
               {new Date(results.current_weather.time).toLocaleString()} (
               {results.timezone})
             </p>
           </div>
 
           <div className="m-2 mb-10">
-            <CalloutCard message={'This is where GPT4 Summary Will Go'} />
+            <CalloutCard message={'CHATGPT GOES HERE'} />
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 m-2">
             <StatCard
               title="Maximum Temperature"
-              metric={`${farenheitMax}°F`}
+              metric={`${farenheitMax}°`}
               color="yellow"
             />
 
             <StatCard
               title="Minimum Temperature"
-              metric={`${farenheitMin}°F`}
-              color="yellow"
+              metric={`${farenheitMin}°`}
+              color="green"
             />
 
-            <div id="weather__uv-index">
+            <div>
               <StatCard
                 title="UV Index"
-                metric={`${results.daily.uv_index_max[0].toFixed(1)}`}
+                metric={results.daily.uv_index_max[0].toFixed(1)}
                 color="rose"
               />
               {Number(results.daily.uv_index_max[0].toFixed(1)) > 5 && (
                 <CalloutCard
-                  message="UV Index is high, wear sunscreen!"
+                  message={'The UV is high today, be sure to wear SPF!'}
                   warning
                 />
               )}
             </div>
 
-            <div id="weather__wind" className="flex space-x-3">
+            <div className="flex space-x-3">
               <StatCard
                 title="Wind Speed"
                 metric={`${windspeedMPH}mph`}
                 color="cyan"
               />
-              <StatCard
+
+              {/* <StatCard
                 title="Wind Direction"
                 metric={`${results.current_weather.winddirection.toFixed(1)}°`}
-                color="cyan"
+                color="violet"
+              /> */}
+              {/* <Compass degrees={results.current_weather.winddirection} /> */}
+              <WindSpeedCard
+                title="Wind Direction"
+                metric={`${results.current_weather.winddirection.toFixed(1)}°`}
+                color="violet"
+                degrees={results.current_weather.winddirection}
               />
             </div>
           </div>
@@ -105,9 +117,9 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
         <hr className="mb-5" />
 
         <div className="space-y-3">
-          {/* TemperatureChart */}
-          {/* RainChart */}
-          {/* HumidityChart */}
+          <TemperatureChart results={results} />
+          {/* <RainChart results={results} /> */}
+          {/* <HumidityChart results={results} /> */}
         </div>
       </div>
     </div>
