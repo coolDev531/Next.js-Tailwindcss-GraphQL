@@ -14,9 +14,9 @@ export default function Home() {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
 
-        const {city} = await fetch(
+        const { city } = await fetch(
           `${getBasePath()}/api/reverseGeoCode?lat=${latitude}&long=${longitude}`
-        ).then(r => r.json());
+        ).then((r) => r.json());
 
         router.push(`/location/${city}/${latitude}/${longitude}`);
       });
@@ -43,10 +43,12 @@ export default function Home() {
           <CityPicker />
         </Card>
 
+        <Text className="text-4xl font-bold text-center mb-4 mt-4">OR</Text>
+
         <Button
-          className="w-full bg-gradient-to-br from-[#394F68] to-[#183B7E] my-4"
+          className="w-full bg-gradient-to-br from-[#394F68] to-[#183B7E]"
           onClick={onMyLocationClick}>
-          My Location
+          Get My Current Location's Weather
         </Button>
       </Card>
     </div>
