@@ -18,7 +18,7 @@ import WindSpeedCard from '@/components/WindSpeedCard';
 import RainChart from '@/components/RainChart';
 import HumidityChart from '@/components/HumidityChart';
 
-export const revalidate = 60; // comes with next.js, every 60 seconds it will retrigger a rebuild of the cache (provided that the page is visited)
+export const revalidate = 1440; // comes with next.js, every day seconds it will retrigger a rebuild of the cache (provided that the page is visited)
 
 type Props = {
   params: {

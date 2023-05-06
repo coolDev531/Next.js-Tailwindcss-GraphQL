@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Card, Metric, Text, Color } from '@tremor/react';
+import { Metric } from '@tremor/react';
 
 type Props = {
   degrees: number;
