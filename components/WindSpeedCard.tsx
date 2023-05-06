@@ -12,7 +12,12 @@ type Props = {
 
 function WindSpeedCard({ title, metric, color, degrees }: Props) {
   return (
-    <Card decoration="top" decorationColor={color}>
+    <Card
+      decoration="top"
+      decorationColor={color}
+      style={{
+        minHeight: '200px',
+      }}>
       <Text>{title}</Text>
       {/* <Metric>{metric}</Metric> */}
       <Compass degrees={degrees} metric={metric} title={title} />

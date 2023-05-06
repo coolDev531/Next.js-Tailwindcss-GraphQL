@@ -7,20 +7,18 @@ type Props = {
   title: string;
 };
 
-function Compass({ degrees, metric, title }: Props) {
+function Compass({ degrees, metric }: Props) {
   return (
     <div
       className={`relative`}
       style={{
         width: '100%',
         height: '100%',
-        padding: "10px"
-        // backgroundImage: `url(http://i.imgur.com/44nyA.jpg)`,
-        // backgroundSize: '100% 100%',
+        padding: '10px',
       }}>
       <div
         className="select-none text-blue-500 font-bold
-       absolute top-0 left-[50%]"
+       absolute top-[10%] left-[50%]"
         style={{
           transform: 'translate(-50%, -50%)',
         }}>
@@ -50,9 +48,13 @@ function Compass({ degrees, metric, title }: Props) {
         }}>
         W
       </div>
-
-      {/* <Text className="">{title}</Text> */}
-      {/* <Metric className="text-black absolute bottom-0 right-0">{metric}</Metric> */}
+      <Metric
+        className="text-black absolute bottom-0 right-0"
+        style={{
+          fontSize: '14px',
+        }}>
+        {metric}
+      </Metric>
       <Image
         src="/compass-arrow.png"
         width={100}
