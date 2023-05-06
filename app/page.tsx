@@ -1,9 +1,31 @@
 'use client'; // tremor.so/docs/getting-started/installation
 
-import { Card, Divider, Subtitle, Text } from '@tremor/react';
+import { Card, Divider, Subtitle, Text, Button } from '@tremor/react';
 import CityPicker from '@/components/CityPicker';
+import { useRouter } from 'next/navigation';
+import getBasePath from '@/lib/getBasePath';
 
 export default function Home() {
+  const router = useRouter();
+
+  const onMyLocationClick = async () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        const {city} = await fetch(
+          `${getBasePath()}/api/reverseGeoCode?lat=${latitude}&long=${longitude}`
+        ).then(r => r.json());
+
+        router.push(`/location/${city}/${latitude}/${longitude}`);
+      });
+    } else {
+      // users browser doesn't support Geolocation
+      alert('Your browser does not support Geolocation!');
+    }
+  };
+
   return (
     <div
       className="min-h-screen bg-gradient-to-br from-[#394F68] to-[#183B7E] p-10 flex flex-col
@@ -20,6 +42,12 @@ export default function Home() {
         <Card className="bg-gradient-to-br from-[#394F68] to-[#183B7E]">
           <CityPicker />
         </Card>
+
+        <Button
+          className="w-full bg-gradient-to-br from-[#394F68] to-[#183B7E] my-4"
+          onClick={onMyLocationClick}>
+          My Location
+        </Button>
       </Card>
     </div>
   );
