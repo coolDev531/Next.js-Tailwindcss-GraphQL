@@ -16,6 +16,16 @@ import { GlobeIcon } from '@heroicons/react/solid';
 import { ICountry, ICity } from 'country-state-city';
 import { CityOption, CountryOption } from '@/types/city-picker.types';
 
+// react select needs the value key, so we need to map the original countries and add value
+const countryOptions = Country.getAllCountries().map((country: ICountry) => ({
+  value: {
+    latitude: country.latitude,
+    longitude: country.longitude,
+    isoCode: country.isoCode,
+  },
+  label: country.name,
+}));
+
 function CityPicker() {
   const [selectedCountry, setSelectedCountry] = useState<CountryOption>(null);
   const [selectedCity, setSelectedCity] = useState<CityOption>(null);
@@ -32,16 +42,6 @@ function CityPicker() {
       `/location/${option?.value.latitude}/${option?.value.longitude}`
     );
   };
-
-  // react select needs the value key, so we need to map the original countries and add value
-  const countryOptions = Country.getAllCountries().map((country: ICountry) => ({
-    value: {
-      latitude: country.latitude,
-      longitude: country.longitude,
-      isoCode: country.isoCode,
-    },
-    label: country.name,
-  }));
 
   return (
     <div className="space-y-4">
