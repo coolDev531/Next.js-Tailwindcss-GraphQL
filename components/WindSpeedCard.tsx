@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, Color, Metric, Text } from '@tremor/react';
+import { Card, Color, Text } from '@tremor/react';
 import Compass from './Compass';
 
 type Props = {
@@ -19,7 +19,6 @@ function WindSpeedCard({ title, metric, color, degrees }: Props) {
         minHeight: '200px',
       }}>
       <Text>{title}</Text>
-      {/* <Metric>{metric}</Metric> */}
       <Compass degrees={degrees} metric={metric} title={title} />
     </Card>
   );
