@@ -16,12 +16,12 @@ export default function Home() {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
 
-        setIsLoading(true)
+        setIsLoading(true);
         const { city } = await fetch(
           `${getBasePath()}/api/reverseGeoCode?lat=${latitude}&long=${longitude}`
         ).then((r) => r.json());
 
-        await router.push(`/location/${city}/${latitude}/${longitude}`);
+        router.push(`/location/${city}/${latitude}/${longitude}`);
         setIsLoading(false);
       });
     } else {
@@ -56,8 +56,7 @@ export default function Home() {
         <Button
           className="w-full text-white bg-gradient-to-br from-[#f961e4] to-[#4063F2]"
           onClick={onMyLocationClick}
-          disabled={isLoading}
-          >
+          disabled={isLoading}>
           {!isLoading
             ? `Get My Current Location's Weather`
             : `Loading... hold on!`}
