@@ -37,47 +37,4 @@ function getVoices(locale: string): SpeechSynthesisVoice[] {
   return _cache[locale];
 }
 
-interface ISpeak {
-  locale?: string;
-  text: string;
-  onEnd?: () => void;
-  volume?: number;
-  onStart?: () => void;
-}
-
-function speak({ locale = 'en-US', text, onEnd, volume = 1, onStart }: ISpeak) {
-  const voices = getVoices(locale);
-
-  // TODO load preference here, e.g. male / female etc.
-  // TODO but for now we just use the first occurrence
-  const utterance = new window.SpeechSynthesisUtterance();
-  utterance.voice = voices[0];
-  utterance.pitch = 1;
-  utterance.rate = 1;
-  utterance.volume = volume;
-  utterance.rate = 1;
-  utterance.pitch = 0.8;
-  utterance.text = text;
-  utterance.lang = locale;
-
-  if (onStart) {
-    utterance.onstart = onStart;
-  }
-
-  if (onEnd) {
-    utterance.onend = onEnd;
-  }
-
-  _speechSynth.cancel(); // cancel current speak, if any is running
-  _speechSynth.speak(utterance);
-}
-
-function cancel() {
-  _speechSynth.cancel();
-}
-
-function isSpeaking() {
-  return _speechSynth?.speaking;
-}
-
-export { loadVoicesWhenAvailable, speak, cancel, isSpeaking };
+export { loadVoicesWhenAvailable, getVoices };
