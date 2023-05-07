@@ -36,7 +36,7 @@ export default function Home() {
     justify-center items-center
     ">
       <Card className="max-w-4xl mx-auto">
-        <Text className="text-6xl font-bold text-center mb-10 text-white">
+        <Text className="text-4xl md:text-6xl font-bold text-center mb-10 text-white">
           AtmosTrend
         </Text>
         <Subtitle className="text-xl text-center text-white">
