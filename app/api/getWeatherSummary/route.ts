@@ -23,6 +23,6 @@ export async function POST(request: Request) {
     ],
   });
 
-  const { data } = response;
+  const { data } = response; /// get response
   return NextResponse.json(data.choices[0].message);
 }
