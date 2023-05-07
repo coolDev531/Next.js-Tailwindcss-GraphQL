@@ -1,4 +1,6 @@
 import { Root } from '@/types/weather';
+import celsiusToFahrenheit from './convertCelciusToFarenheit';
+import kmhToMph from './kmhToMph';
 
 const cleanWeatherData = (data: Root, city: string) => {
   const {
@@ -23,15 +25,17 @@ const cleanWeatherData = (data: Root, city: string) => {
 
   return {
     current_weather: {
-      temperature,
-      windspeed,
+      temperature: celsiusToFahrenheit(temperature),
+      windspeed: kmhToMph(windspeed),
       winddirection,
       time,
       weathercode,
     },
     hourly: {
       // slicing only the first 24 hours worth of data so chatgpt doesn't charge me for too much data (tokens)
-      temperature_2m: temperature_2m.slice(0, 24),
+      temperature_2m: temperature_2m
+        .map((temperature) => celsiusToFahrenheit(temperature))
+        .slice(0, 24),
       snowfall: snowfall.slice(0, 24),
       rain: rain.slice(0, 24),
       relativehumidity_2m: relativehumidity_2m.slice(0, 24),

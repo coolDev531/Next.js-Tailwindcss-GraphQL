@@ -56,7 +56,7 @@ function WeatherSummary({ results, city }: Props) {
 
   const loadingMsg = `Loading AI Weather Summary${dots}`;
 
-  const Icon = isSpeaking ? SpeakerCancelIcon : SpeakerWaveIcon;
+  const Icon = isSpeaking ? SpeakerWaveIcon : SpeakerMutedIcon;
 
   return (
     <div className="relative">
@@ -64,12 +64,12 @@ function WeatherSummary({ results, city }: Props) {
 
       {!isLoading && (
         <Icon
-          className="block absolute bottom-0 right-0 text-black w-[50px] h-[50px] cursor-pointer"
+          className="block absolute bottom-0 right-0 text-black w-[48px] h-[48px] cursor-pointer"
           onClick={() => {
             if (!isSpeaking) {
               speak({ text: GPTdata });
             } else {
-              cancelSpeak();           
+              cancelSpeak();
             }
           }}
         />
@@ -92,7 +92,7 @@ function SpeakerWaveIcon({ onClick, className }: any) {
   );
 }
 
-function SpeakerCancelIcon({ onClick, className }: any) {
+function SpeakerMutedIcon({ onClick, className }: any) {
   return (
     <svg
       onClick={onClick}
