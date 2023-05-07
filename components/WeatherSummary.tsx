@@ -26,6 +26,8 @@ function WeatherSummary({ results, city }: Props) {
 
   useEffect(() => {
     const handleFetch = async () => {
+      if (!results?.latitude) return;
+
       const dataToSendGPT = cleanWeatherData(results, city);
 
       const res = await fetch(`${getBasePath()}/api/getWeatherSummary`, {
@@ -60,11 +62,14 @@ function WeatherSummary({ results, city }: Props) {
 
   return (
     <div className="relative">
-      <CalloutCard message={isLoading ? loadingMsg : GPTdata} />
+      <CalloutCard
+        className="text-black mt-4 pb-[42px]"
+        message={isLoading ? loadingMsg : GPTdata}
+      />
 
       {!isLoading && (
         <Icon
-          className="block absolute bottom-0 right-0 text-black w-[48px] h-[48px] cursor-pointer"
+          className="block absolute bottom-[5px] right-[10px] text-black w-[48px] h-[48px] cursor-pointer"
           onClick={() => {
             if (!isSpeaking) {
               speak({ text: GPTdata });
