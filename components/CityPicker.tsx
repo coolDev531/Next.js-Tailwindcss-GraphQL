@@ -2,12 +2,13 @@
 // https://nextjs.org/docs/getting-started/react-essentials
 
 // hooks
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 // components
 import { Country, City, State } from 'country-state-city';
 import Select from 'react-select';
+import { Button } from '@tremor/react';
 
 // icons
 import { GlobeIcon } from '@heroicons/react/solid';
@@ -23,24 +24,14 @@ function CityPicker() {
 
   const router = useRouter();
 
-  const handleCountryChange = (option: CountryOption) => {
-    setSelectedCountry(option);
-    setSelectedState(null);
-    setSelectedCity(null);
-  };
-
-  const handleStateChange = (option: StateOption) => {
-    setSelectedState(option);
-    setSelectedCity(null);
-  };
-
-  const handleCityChange = (option: CityOption) => {
-    setSelectedCity(option);
-
-    router.push(
-      `/location/${option?.value.name}/${option?.value.latitude}/${option?.value.longitude}`
-    );
-  };
+  const countryCode = useMemo(
+    () => selectedCountry?.value.isoCode || '',
+    [selectedCountry]
+  );
+  const stateCode = useMemo(
+    () => selectedState?.value.isoCode || '',
+    [selectedState]
+  );
 
   // react select needs the value key, so we need to map the original countries and add value
   const countryOptions = Country.getAllCountries().map((country: ICountry) => ({
@@ -52,10 +43,7 @@ function CityPicker() {
     label: country.name,
   }));
 
-  const countryCode = selectedCountry?.value.isoCode || '';
-  const stateCode = selectedState?.value.isoCode || '';
-
-  const stateData = State.getStatesOfCountry(countryCode).map(
+  const stateOptions = State.getStatesOfCountry(countryCode).map(
     (state: IState) => ({
       value: {
         latitude: state.latitude!,
@@ -68,7 +56,7 @@ function CityPicker() {
     })
   );
 
-  const cityData = City.getCitiesOfState(countryCode, stateCode).map(
+  const cityOptions = City.getCitiesOfState(countryCode, stateCode).map(
     (city: ICity) => ({
       value: {
         latitude: city.latitude!,
@@ -80,6 +68,31 @@ function CityPicker() {
       label: city.name,
     })
   );
+
+  const handleCountryChange = (option: CountryOption) => {
+    setSelectedCountry(option);
+    setSelectedState(null);
+    setSelectedCity(null);
+  };
+
+  const handleStateChange = (option: StateOption) => {
+    setSelectedCity(null);
+    setSelectedState(option);
+  };
+
+  const handleCityChange = (option: CityOption) => {
+    setSelectedCity(option);
+  };
+
+  const goToWeatherPage = () => {
+    if (!selectedCountry?.value) return;
+
+    const option = selectedCity?.value || selectedState?.value;
+
+    router.push(
+      `/location/${option?.name}/${option?.latitude}/${option?.longitude}`
+    );
+  };
 
   return (
     <div className="space-y-4">
@@ -99,35 +112,50 @@ function CityPicker() {
 
       {selectedCountry?.value && (
         <>
-          <div className="space-y-2" id="state-select">
-            <div className="flex items-center space-x-2 text-white/80">
-              <GlobeIcon className="h-5 w-5 text-white" />
-              <label htmlFor="city">State</label>
+          {stateOptions.length > 0 ? (
+            <div className="space-y-2" id="state-select">
+              <div className="flex items-center space-x-2 text-white/80">
+                <GlobeIcon className="h-5 w-5 text-white" />
+                <label htmlFor="city">State</label>
+              </div>
+              <Select
+                name="city"
+                value={selectedState}
+                onChange={handleStateChange}
+                options={stateOptions}
+                className="text-black"
+              />
             </div>
-            <Select
-              name="city"
-              value={selectedState}
-              onChange={handleStateChange}
-              options={stateData}
-              className="text-black"
-            />
-          </div>
+          ) : null}
 
-          <div className="space-y-2" id="city-select">
-            <div className="flex items-center space-x-2 text-white/80">
-              <GlobeIcon className="h-5 w-5 text-white" />
-              <label htmlFor="city">City</label>
+          {cityOptions.length > 0 ? (
+            <div className="space-y-2" id="city-select">
+              <div className="flex items-center space-x-2 text-white/80">
+                <GlobeIcon className="h-5 w-5 text-white" />
+                <label htmlFor="city">City</label>
+              </div>
+              <Select
+                name="city"
+                value={selectedCity}
+                onChange={handleCityChange}
+                options={cityOptions}
+                className="text-black"
+              />
             </div>
-            <Select
-              name="city"
-              value={selectedCity}
-              onChange={handleCityChange}
-              options={cityData}
-              className="text-black"
-            />
-          </div>
+          ) : null}
         </>
       )}
+
+      <Button
+        className="w-full text-white bg-gradient-to-br from-[#f961e4] to-[#4063F2]"
+        onClick={goToWeatherPage}
+        disabled={
+          cityOptions.length > 0 ? !selectedCity?.value : !selectedState?.value
+        }>
+        {`Get Weather Report ${selectedCountry?.label ? 'for' : ''} ${
+          (selectedCity?.label || selectedState?.label || selectedCountry?.label)
+        ?? '' }`}
+      </Button>
     </div>
   );
 }

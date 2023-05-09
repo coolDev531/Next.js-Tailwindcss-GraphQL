@@ -22,11 +22,11 @@ export type CityOption = {
 
 export type StateOption = {
   value: {
-    latitude: ICity['latitude'];
-    longitude: ICity['longitude'];
-    name: ICity['name'];
+    latitude: IState['latitude'];
+    longitude: IState['longitude'];
+    name: IState['name'];
     isoCode: IState['isoCode'];
-    countryCode: ICity['countryCode'];
+    countryCode: IState['countryCode'];
   };
-  label: ICity['name'];
+  label: IState['name'];
 } | null;
