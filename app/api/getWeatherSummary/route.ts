@@ -9,6 +9,7 @@ export async function POST(request: Request) {
     temperature: 0.8,
     n: 1,
     stream: false,
+    max_tokens: 2049,
     messages: [
       {
         role: 'system',
