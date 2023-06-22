@@ -1,7 +1,7 @@
 
 ## Overview
 
-**AtmosTrend**
+**AtmosTrend**:
 Craft an intuitive and engaging UI with Tailwind CSS, while utilizing GraphQL to optimize data
 querying, resulting in a responsive and high-performance application across devices.
 Integrate geolocation technology for hyper-localized, real-time
