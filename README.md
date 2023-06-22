@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Overview
 
-First, run the development server:
+**AtmosTrend**
+Craft an intuitive and engaging UI with Tailwind CSS, while utilizing GraphQL to optimize data
+querying, resulting in a responsive and high-performance application across devices.
+Integrate geolocation technology for hyper-localized, real-time
+weather data including UV index, temperature, rainfall, and humidity.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## MVP
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- _*AtmosTrend* will feature a page where you can pick a country, city and state to fetch the weather._  ✔️
+- _Use chatGPT to generate a weather summary_ ✔️
+- _*AtmosTrend* will be responsive on mobile, tablet and desktop._ ✔️
+  <br>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Libraries and Dependencies
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# atmos-trend
-# atmos-trend
+|      Library      | Description                                                                                       |
+| :---------------: | :------------------------------------------------------------------------------------------------ |
+|       Next.js     | _Full-stack client and server_                                                                    |
+|       Axios       | _NPM Package to help make API requests_                                                           |
+|       Open AI     | _NPM Package to interact with the openai api_                                                     |
+|       Tailwind    | _Front-end css framework_                                                                         |
+|       StepZen     | _Build GraphQL Easily Optimize & Scale GraphQL Automatically_                                     |
+|       Tremor      | _React component library_                                                                         |
